@@ -1,0 +1,656 @@
+<!doctype html>
+
+<html class="light" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TalentPulse - Temukan Bakat Terpendammu</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fff8f5;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "on-surface": "#241912",
+              surface: "#fff8f5",
+              "on-tertiary-container": "#004360",
+              "secondary-container": "#dfe0e0",
+              "inverse-primary": "#ffb77d",
+              "surface-variant": "#f3dfd1",
+              "surface-tint": "#904d00",
+              "on-primary-fixed-variant": "#6e3900",
+              outline: "#897362",
+              "on-primary": "#ffffff",
+              primary: "#904d00",
+              "on-tertiary-fixed-variant": "#004c6c",
+              "surface-dim": "#ead6c9",
+              "on-tertiary": "#ffffff",
+              secondary: "#5d5f5f",
+              "surface-container-high": "#f9e4d7",
+              "on-primary-fixed": "#2f1500",
+              "surface-container": "#ffeadd",
+              "on-background": "#241912",
+              "inverse-on-surface": "#ffede3",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c6c6c7",
+              "surface-container-low": "#fff1e9",
+              "secondary-fixed": "#e2e2e2",
+              background: "#fff8f5",
+              "surface-bright": "#fff8f5",
+              "primary-fixed-dim": "#ffb77d",
+              tertiary: "#00658f",
+              "on-secondary-fixed-variant": "#454747",
+              "on-secondary-container": "#616363",
+              "surface-container-highest": "#f3dfd1",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#623200",
+              "primary-container": "#ff8c00",
+              "tertiary-container": "#00b5fc",
+              "on-secondary-fixed": "#1a1c1c",
+              "error-container": "#ffdad6",
+              error: "#ba1a1a",
+              "outline-variant": "#ddc1ae",
+              "on-surface-variant": "#564334",
+              "on-tertiary-fixed": "#001e2e",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#3a2e25",
+              "primary-fixed": "#ffdcc3",
+              "tertiary-fixed": "#c7e7ff",
+              "tertiary-fixed-dim": "#85cfff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              base: "8px",
+              xs: "4px",
+              "container-max": "1280px",
+              sm: "12px",
+              lg: "48px",
+              md: "24px",
+              xl: "80px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              h1: ["Montserrat"],
+              h2: ["Montserrat"],
+              h3: ["Montserrat"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-bold": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              h1: [
+                "48px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h2: [
+                "32px",
+                {
+                  lineHeight: "1.3",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              h3: ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "label-bold": [
+                "14px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface text-on-surface antialiased">
+    <!-- Top Navigation Bar -->
+    <nav
+      class="bg-surface/90 backdrop-blur-md font-h3 text-h3 tracking-tight docked full-width top-0 sticky shadow-sm z-50"
+    >
+      <div
+        class="flex justify-between items-center w-full px-gutter py-4 max-w-container-max mx-auto"
+      >
+        <div class="font-h2 text-h2 font-bold text-on-surface">TalentPulse</div>
+        <div class="hidden md:flex gap-md items-center">
+          <a
+            class="text-primary border-b-2 border-primary pb-1 font-label-bold"
+            href="#"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
+            href="#"
+            >Dashboard</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
+            href="#"
+            >Assessments</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
+            href="#"
+            >Catalog</a
+          >
+        </div>
+        <div class="flex items-center gap-sm">
+          <button
+            class="hidden md:block text-on-surface-variant font-label-bold hover:text-primary transition-colors duration-200 px-4 py-2"
+          >
+            Log In
+          </button>
+          <button
+            class="bg-primary-container text-on-primary font-label-bold px-6 py-3 rounded-lg hover:brightness-110 active:scale-95 transition-all"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <!-- Hero Section -->
+      <section class="relative overflow-hidden pt-xl pb-xl bg-surface">
+        <div
+          class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-xl items-center"
+        >
+          <div class="z-10">
+            <span
+              class="bg-primary/10 text-primary px-4 py-1 rounded-full font-label-bold text-caption mb-md inline-block"
+              >PROFESSIONAL ASSESSMENT ENGINE</span
+            >
+            <h1 class="font-h1 text-h1 text-on-surface mb-md">
+              Temukan Bakat Terpendammu
+            </h1>
+            <p class="font-body-lg text-on-surface-variant mb-lg max-w-lg">
+              Buka potensi karir dan bakat alami Anda melalui platform penilaian
+              berbasis data tingkat lanjut. Dirancang untuk memberikan
+              kejelasan, arah, dan momentum dalam perjalanan profesional Anda.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-md">
+              <a href="test.html">
+                <button
+                  class="bg-primary-container text-on-primary font-label-bold px-xl py-lg rounded-lg text-lg hover:brightness-110 shadow-lg active:scale-95 transition-all"
+                >
+                  Mulai Tes Sekarang
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute -top-10 -right-10 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl"
+            ></div>
+            <div class="relative rounded-xl overflow-hidden shadow-xl">
+              <img
+                class="w-full h-full object-cover"
+                data-alt="A professional team of diverse young experts collaborating in a bright, modern office space with high ceilings and clean white walls. The scene is illuminated by natural daylight, emphasizing a high-contrast minimalist aesthetic. The focus is on a group looking at a digital interface with vibrant orange accents, symbolizing discovery and professional growth. The atmosphere is energetic, optimistic, and deeply authoritative."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuATK3eGLLA2ytc5x8bPV1Vp2fBUesSfafm-74D7v7UaPKM5ZmN_Tt4hYD0Vw54hcqvbvFlvfTtzMzJA7crGgRgbi1Qn2KYQsSD-TRXDYYqW87qumZnAN9FvXgpEoMtZAWTtDLd2VoUAPireCFlC3Kr1tlZ1F0DbrtqUYh-WEOQ8cuByxhNMmHN5TqvxBUxlO-WtP6CMuxeAkMUiRoLRTBqMH546Fvc4U4EM3dxSIbp7ki5j2AzcTC6GnmQWky2oJvlEUg4-RFKFgpKo"
+              />
+              <div
+                class="absolute bottom-md left-md right-md bg-white/90 backdrop-blur-sm p-md rounded-xl border border-outline-variant shadow-sm"
+              >
+                <div class="flex items-center gap-sm">
+                  <div class="bg-primary p-2 rounded-full text-white">
+                    <span class="material-symbols-outlined" data-weight="fill"
+                      >trending_up</span
+                    >
+                  </div>
+                  <div>
+                    <p
+                      class="font-label-bold text-on-surface text-caption uppercase tracking-wider"
+                    >
+                      Akurasi Prediksi
+                    </p>
+                    <p class="font-h3 text-h3 text-primary">
+                      98.4% Success Rate
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Bagaimana Ini Bekerja (Bento Grid) -->
+      <section class="py-xl bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-gutter">
+          <div class="text-center mb-xl">
+            <h2 class="font-h2 text-h2 text-on-surface mb-sm">
+              Bagaimana Ini Bekerja
+            </h2>
+            <div
+              class="h-1 w-24 bg-primary-container mx-auto rounded-full"
+            ></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+            <!-- Step 1 -->
+            <div
+              class="md:col-span-8 bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group"
+            >
+              <div class="flex flex-col md:flex-row gap-lg items-center">
+                <div class="flex-1">
+                  <div
+                    class="w-16 h-16 bg-on-surface text-surface flex items-center justify-center rounded-lg mb-md text-h2 group-hover:scale-110 transition-transform"
+                  >
+                    01
+                  </div>
+                  <h3 class="font-h3 text-h3 text-on-surface mb-sm">
+                    Penilaian Adaptif
+                  </h3>
+                  <p class="font-body-md text-on-surface-variant">
+                    Selesaikan tes psikometri dan penilaian keterampilan yang
+                    menyesuaikan tingkat kesulitan berdasarkan respon Anda
+                    secara real-time untuk hasil paling akurat.
+                  </p>
+                </div>
+                <div class="w-full md:w-1/3">
+                  <img
+                    class="rounded-lg shadow-sm"
+                    data-alt="A clean, minimalist UI dashboard displayed on a high-end tablet, showing complex data visualizations and progress bars in vibrant orange and deep black. The background is a soft grey office environment with a focus on professional development and technological precision. Lighting is soft and atmospheric, highlighting the clarity of the assessment interface."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQgnpx0LgNLuTa8j0sB8v45HqLBz9uwqykxvWvzxnqopJ9aySife0XyNh5fzOiRUZAmSoqJCiyXN0W-WXQrl-mFx-mFBgqmpK8U2caqVwl0ak1aUTHEoRfH7Dxmmc5wygRz9SUxRMr2IiEyuqeJIstZFruYBGGgMzGj1Y07uuQIr1xGuIhqD20lCwYzXF0W9hoBqmKfH3B6LL7OxpT5jCyrRxGhizaeBBUQaKeAET-28l7l3zBUsDdh0gfEKyvYzuJ8XMg1oqohPw3"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div
+              class="md:col-span-4 bg-on-surface p-xl rounded-xl shadow-lg flex flex-col justify-between group"
+            >
+              <div>
+                <div
+                  class="w-16 h-16 bg-primary-container text-on-primary flex items-center justify-center rounded-lg mb-md text-h2 group-hover:rotate-12 transition-transform"
+                >
+                  02
+                </div>
+                <h3 class="font-h3 text-h3 text-surface mb-sm">
+                  Analisis AI Deep-Dive
+                </h3>
+              </div>
+              <p class="font-body-md text-surface-variant">
+                Mesin cerdas kami memproses ribuan titik data untuk memetakan
+                kekuatan kognitif dan preferensi perilaku Anda.
+              </p>
+            </div>
+            <!-- Step 3 -->
+            <div
+              class="md:col-span-4 bg-primary-container p-xl rounded-xl shadow-lg text-on-primary flex flex-col justify-between group"
+            >
+              <div>
+                <div
+                  class="w-16 h-16 bg-on-surface text-surface flex items-center justify-center rounded-lg mb-md text-h2 group-hover:-translate-y-2 transition-transform"
+                >
+                  03
+                </div>
+                <h3 class="font-h3 text-h3 mb-sm">Laporan Komprehensif</h3>
+              </div>
+              <p class="font-body-md opacity-90">
+                Dapatkan dokumen detail 20+ halaman yang menjabarkan
+                'Superpowers' Anda dan langkah-langkah praktis untuk
+                mengoptimalkannya.
+              </p>
+            </div>
+            <!-- Step 4 -->
+            <div
+              class="md:col-span-8 bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group"
+            >
+              <div
+                class="flex flex-col md:flex-row-reverse gap-lg items-center"
+              >
+                <div class="flex-1">
+                  <div
+                    class="w-16 h-16 bg-on-surface text-surface flex items-center justify-center rounded-lg mb-md text-h2 group-hover:scale-110 transition-transform"
+                  >
+                    04
+                  </div>
+                  <h3 class="font-h3 text-h3 text-on-surface mb-sm">
+                    Mentoring &amp; Pathing
+                  </h3>
+                  <p class="font-body-md text-on-surface-variant">
+                    Terhubung dengan mentor ahli di bidang yang sesuai dengan
+                    hasil tes Anda untuk panduan karir yang lebih spesifik dan
+                    terukur.
+                  </p>
+                </div>
+                <div class="w-full md:w-1/3">
+                  <div class="grid grid-cols-2 gap-xs">
+                    <div
+                      class="h-24 bg-surface-container-high rounded-lg flex items-center justify-center"
+                    >
+                      <span
+                        class="material-symbols-outlined text-primary text-h1"
+                        >school</span
+                      >
+                    </div>
+                    <div
+                      class="h-24 bg-surface-container-highest rounded-lg flex items-center justify-center"
+                    >
+                      <span
+                        class="material-symbols-outlined text-primary text-h1"
+                        >psychology</span
+                      >
+                    </div>
+                    <div
+                      class="h-24 bg-on-surface/5 rounded-lg flex items-center justify-center"
+                    >
+                      <span
+                        class="material-symbols-outlined text-primary text-h1"
+                        >workspace_premium</span
+                      >
+                    </div>
+                    <div
+                      class="h-24 bg-primary/10 rounded-lg flex items-center justify-center"
+                    >
+                      <span
+                        class="material-symbols-outlined text-primary text-h1"
+                        >verified_user</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Testimoni Section -->
+      <section class="py-xl bg-surface">
+        <div class="max-w-container-max mx-auto px-gutter">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-xl gap-md"
+          >
+            <div class="max-w-xl">
+              <h2 class="font-h2 text-h2 text-on-surface mb-sm">
+                Testimoni Pengguna
+              </h2>
+              <p class="font-body-md text-on-surface-variant">
+                Ribuan profesional telah menemukan jalur yang tepat. Inilah
+                cerita perjalanan mereka bersama TalentPulse.
+              </p>
+            </div>
+            <div class="flex gap-sm">
+              <button
+                class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-on-surface hover:text-surface transition-all"
+              >
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <button
+                class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-on-surface hover:text-surface transition-all"
+              >
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+            <!-- Testimonial 1 -->
+            <div
+              class="bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between h-full hover:-translate-y-2 transition-transform"
+            >
+              <div>
+                <div class="flex gap-xs text-primary-container mb-md">
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                </div>
+                <p class="font-body-lg text-on-surface italic mb-lg">
+                  "Berkat TalentPulse, saya akhirnya berani berpindah karir dari
+                  operasional ke UI/UX Design. Hasil analisisnya sangat detail
+                  dan memberikan saya rasa percaya diri yang tinggi."
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-md pt-md border-t border-outline-variant"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden"
+                >
+                  <img
+                    alt="Sarah Quinn"
+                    data-alt="A portrait of a confident young professional woman with a warm, friendly smile. She is in a modern, brightly lit office with soft focus background. The aesthetic is clean and professional, using high-key lighting to emphasize her optimistic energy. The palette is dominated by soft neutrals and warm skin tones."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtCTdfBGCvCkAd1e88YygdY1L2duBUlFgkunwyE7MECfPPQ_whL7DtaqForan-9_r37K0phI9_ZigzwqCog4Pmc-znHtrI5cNc9wTjB-tlrXmDIFO61m-CjBG8BLWhf2L2VoCOYePIA3ynrGdMCLsJFD3UjMksjw7lgjbxFs5YfmVTrUTsYzwv_Ih_hHggxQ65IRsplkh0z-0MD-lP9cQ5cOZRtTuNurnmaw_0tuQU2hdxJCN6VWjhae4Mts8_YRuTGSXkENJ-4ZCJ"
+                  />
+                </div>
+                <div>
+                  <p class="font-label-bold text-on-surface">Sarah Quinn</p>
+                  <p class="font-caption text-on-surface-variant">
+                    Product Designer at TechCorp
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div
+              class="bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between h-full hover:-translate-y-2 transition-transform"
+            >
+              <div>
+                <div class="flex gap-xs text-primary-container mb-md">
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star_half</span
+                  >
+                </div>
+                <p class="font-body-lg text-on-surface italic mb-lg">
+                  "Sistem penilaiannya bukan sekadar kuis biasa. Ini benar-benar
+                  menggali aspek psikologis yang tidak saya sadari sebelumnya.
+                  Laporannya sangat profesional."
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-md pt-md border-t border-outline-variant"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden"
+                >
+                  <img
+                    alt="Budi Santoso"
+                    data-alt="A portrait of a male executive in a sleek, modern blazer, looking thoughtfully towards the camera. The background is a minimalist architectural space with clean lines and soft daylight. The lighting creates subtle depth and a professional, authoritative mood. The visual style is high-contrast and minimalist."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtxLrmko-ULYbWyDmNWZRXi0cLmD3KlBZl8OXZ0i1a4ez9vHsRyCgQUE02n8Vqo2wKWW4z8xLr_z_YxHyMofTOv0kvvHy_r_qp9z0qbg2KdKBNm5fHhAtE3CiE2rD6xChD_By1Ab2uu0mB82ySb66iNZEjTNx37-ksaqYfme9WZ__2T2SrT3llcJdt6lttt_26h-AgUyztCNgyGgBBX_efDqPNS_VKQ-WuZnqxjsIPZkdvEFJi4x155pOMF3Rnxr-SK7jPmZ2uZ9By"
+                  />
+                </div>
+                <div>
+                  <p class="font-label-bold text-on-surface">Budi Santoso</p>
+                  <p class="font-caption text-on-surface-variant">
+                    Lead Engineer at StartupHub
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div
+              class="bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between h-full hover:-translate-y-2 transition-transform"
+            >
+              <div>
+                <div class="flex gap-xs text-primary-container mb-md">
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined" data-weight="fill"
+                    >star</span
+                  >
+                </div>
+                <p class="font-body-lg text-on-surface italic mb-lg">
+                  "Investasi terbaik untuk pengembangan diri saya tahun ini.
+                  Rekomendasi mentornya sangat membantu dalam menyusun roadmap
+                  karir 5 tahun ke depan."
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-md pt-md border-t border-outline-variant"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden"
+                >
+                  <img
+                    alt="Amanda Wijaya"
+                    data-alt="A close-up portrait of a professional woman with glasses, expressing focus and intelligence. She is positioned against a clean white wall in a modern office space. The lighting is high-key and bright, evoking a sense of clarity and professionalism. The composition is clean, centered, and minimalist."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz-nBzXJL2AUuSqd2ztw7MIgNuCJaFbIPuN-NzS-v0x2KOxfPWLjzkiMkoGRmwShcejNWbU7DpT5dwFvusoFbjCSiBOYjpMGeIDzCw3lq5VWdxe2G4s12TIH0HThLLUO3PRZtt6RT80vX4-2a7BuBPZWEo7hTOIj1HxGZqDZeuXYoeYkae7UimpCxeGGchyrzYsqPKwlrZYnzvke5eUakuRo8VzPV1pQvB9_hJ24w7sHFoHF72knJxzSNOfND8quntnZ4MPVDEKZgy"
+                  />
+                </div>
+                <div>
+                  <p class="font-label-bold text-on-surface">Amanda Wijaya</p>
+                  <p class="font-caption text-on-surface-variant">
+                    HR Director at Global Enterprise
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Section -->
+      <section class="py-xl px-gutter max-w-container-max mx-auto mb-xl">
+        <div
+          class="bg-on-surface rounded-3xl p-xl text-center relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"
+          ></div>
+          <div class="relative z-10 max-w-2xl mx-auto">
+            <h2 class="font-h1 text-h1 text-surface mb-md">
+              Siap Memulai Perjalanan Anda?
+            </h2>
+            <p class="font-body-lg text-surface-variant mb-xl">
+              Daftar sekarang dan dapatkan akses ke tes pertama secara gratis.
+              Bergabunglah dengan komunitas profesional yang berkembang bersama
+              TalentPulse.
+            </p>
+            <button
+              class="bg-primary-container text-on-primary font-label-bold px-xl py-lg rounded-lg text-lg hover:brightness-110 shadow-lg active:scale-95 transition-all w-full sm:w-auto"
+            >
+              Mulai Tes Sekarang
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-on-surface dark:bg-surface-container-lowest full-width bottom-0 mt-xl"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-lg gap-md max-w-container-max mx-auto"
+      >
+        <div class="flex flex-col gap-sm">
+          <div class="font-h3 text-h3 text-white">TalentPulse</div>
+          <p class="font-caption text-caption text-surface-variant/70 max-w-sm">
+            © 2024 TalentPulse. All rights reserved. Powered by Professional
+            Energy.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-md">
+          <a
+            class="font-caption text-caption text-surface-variant/70 hover:text-primary-container transition-colors"
+            href="#"
+            >Privacy</a
+          >
+          <a
+            class="font-caption text-caption text-surface-variant/70 hover:text-primary-container transition-colors"
+            href="#"
+            >Terms</a
+          >
+          <a
+            class="font-caption text-caption text-surface-variant/70 hover:text-primary-container transition-colors"
+            href="#"
+            >Contact</a
+          >
+          <a
+            class="font-caption text-caption text-surface-variant/70 hover:text-primary-container transition-colors"
+            href="#"
+            >Support</a
+          >
+        </div>
+        <div class="flex gap-md">
+          <span
+            class="material-symbols-outlined text-surface-variant/70 cursor-pointer hover:text-primary-container transition-colors"
+            >public</span
+          >
+          <span
+            class="material-symbols-outlined text-surface-variant/70 cursor-pointer hover:text-primary-container transition-colors"
+            >mail</span
+          >
+          <span
+            class="material-symbols-outlined text-surface-variant/70 cursor-pointer hover:text-primary-container transition-colors"
+            >chat</span
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

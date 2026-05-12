@@ -1,0 +1,505 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "on-surface": "#241912",
+              surface: "#fff8f5",
+              "on-tertiary-container": "#004360",
+              "secondary-container": "#dfe0e0",
+              "inverse-primary": "#ffb77d",
+              "surface-variant": "#f3dfd1",
+              "surface-tint": "#904d00",
+              "on-primary-fixed-variant": "#6e3900",
+              outline: "#897362",
+              "on-primary": "#ffffff",
+              primary: "#904d00",
+              "on-tertiary-fixed-variant": "#004c6c",
+              "surface-dim": "#ead6c9",
+              "on-tertiary": "#ffffff",
+              secondary: "#5d5f5f",
+              "surface-container-high": "#f9e4d7",
+              "on-primary-fixed": "#2f1500",
+              "surface-container": "#ffeadd",
+              "on-background": "#241912",
+              "inverse-on-surface": "#ffede3",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c6c6c7",
+              "surface-container-low": "#fff1e9",
+              "secondary-fixed": "#e2e2e2",
+              background: "#fff8f5",
+              "surface-bright": "#fff8f5",
+              "primary-fixed-dim": "#ffb77d",
+              tertiary: "#00658f",
+              "on-secondary-fixed-variant": "#454747",
+              "on-secondary-container": "#616363",
+              "surface-container-highest": "#f3dfd1",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#623200",
+              "primary-container": "#ff8c00",
+              "tertiary-container": "#00b5fc",
+              "on-secondary-fixed": "#1a1c1c",
+              "error-container": "#ffdad6",
+              error: "#ba1a1a",
+              "outline-variant": "#ddc1ae",
+              "on-surface-variant": "#564334",
+              "on-tertiary-fixed": "#001e2e",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#3a2e25",
+              "primary-fixed": "#ffdcc3",
+              "tertiary-fixed": "#c7e7ff",
+              "tertiary-fixed-dim": "#85cfff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              base: "8px",
+              xs: "4px",
+              "container-max": "1280px",
+              sm: "12px",
+              lg: "48px",
+              md: "24px",
+              xl: "80px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              h1: ["Montserrat"],
+              h2: ["Montserrat"],
+              h3: ["Montserrat"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-bold": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              h1: [
+                "48px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h2: [
+                "32px",
+                {
+                  lineHeight: "1.3",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              h3: ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "label-bold": [
+                "14px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .resting-shadow {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+      }
+      .hover-shadow:hover {
+        box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
+      }
+      .progress-track {
+        background-color: #241912;
+      }
+      .progress-fill {
+        background-color: #ff8c00;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background font-body-md">
+    <!-- TopNavBar -->
+    <nav
+      class="bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-md docked full-width top-0 sticky shadow-sm z-50"
+    >
+      <div
+        class="flex justify-between items-center w-full px-gutter py-4 max-w-container-max mx-auto"
+      >
+        <div class="font-h2 text-h2 font-bold text-on-surface">TalentPulse</div>
+        <div class="hidden md:flex gap-md items-center">
+          <a
+            class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
+            href="#"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
+            href="#"
+            >Dashboard</a
+          >
+          <a
+            class="text-primary border-b-2 border-primary pb-1 font-label-bold"
+            href="#"
+            >Assessments</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
+            href="#"
+            >Catalog</a
+          >
+        </div>
+        <div class="flex items-center gap-sm">
+          <button
+            class="px-4 py-2 text-on-surface font-label-bold hover:opacity-80 transition-all"
+          >
+            Log In
+          </button>
+          <button
+            class="bg-primary-container text-on-primary font-label-bold px-6 py-2 rounded-lg hover:brightness-110 transition-all"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main class="max-w-container-max mx-auto px-gutter py-xl">
+      <!-- Results Header Section -->
+      <section class="mb-xl text-center md:text-left">
+        <span
+          class="text-primary font-label-bold uppercase tracking-widest mb-base block"
+          >Hasil Analisis Bakat</span
+        >
+        <h1 class="font-h1 text-h1 text-on-surface mb-md">
+          Potensi Terbaik Anda
+        </h1>
+        <p class="text-body-lg text-on-surface-variant max-w-2xl">
+          Berdasarkan penilaian terbaru, Anda memiliki kombinasi unik antara
+          visi artistik, ketajaman analisis, dan empati sosial yang mendalam.
+        </p>
+      </section>
+      <!-- Visualization Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-md mb-xl">
+        <!-- Main Chart Card -->
+        <div
+          class="md:col-span-8 bg-surface-container-lowest p-md md:p-lg rounded-xl resting-shadow flex flex-col justify-between"
+        >
+          <div class="flex justify-between items-start mb-lg">
+            <div>
+              <h3 class="font-h3 text-h3 mb-xs">Top 3 Bakat</h3>
+              <p class="text-caption text-on-surface-variant">
+                Skor kompetensi berdasarkan performa tes
+              </p>
+            </div>
+            <span
+              class="material-symbols-outlined text-primary text-3xl"
+              data-icon="insights"
+              >insights</span
+            >
+          </div>
+          <div class="space-y-lg">
+            <!-- Kreativitas -->
+            <div class="group">
+              <div class="flex justify-between mb-xs">
+                <span class="font-label-bold text-on-surface">Kreativitas</span>
+                <span class="font-label-bold text-primary">94%</span>
+              </div>
+              <div
+                class="h-3 w-full progress-track rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full progress-fill rounded-full"
+                  style="width: 94%"
+                ></div>
+              </div>
+            </div>
+            <!-- Logika -->
+            <div class="group">
+              <div class="flex justify-between mb-xs">
+                <span class="font-label-bold text-on-surface">Logika</span>
+                <span class="font-label-bold text-primary">88%</span>
+              </div>
+              <div
+                class="h-3 w-full progress-track rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full progress-fill rounded-full"
+                  style="width: 88%"
+                ></div>
+              </div>
+            </div>
+            <!-- Empati -->
+            <div class="group">
+              <div class="flex justify-between mb-xs">
+                <span class="font-label-bold text-on-surface">Empati</span>
+                <span class="font-label-bold text-primary">82%</span>
+              </div>
+              <div
+                class="h-3 w-full progress-track rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full progress-fill rounded-full"
+                  style="width: 82%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Insight Sidebar Card -->
+        <div
+          class="md:col-span-4 bg-on-surface text-surface-container-lowest p-md md:p-lg rounded-xl flex flex-col justify-center relative overflow-hidden"
+        >
+          <div class="relative z-10">
+            <div
+              class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-md"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface"
+                data-icon="auto_awesome"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >auto_awesome</span
+              >
+            </div>
+            <h3 class="font-h3 text-h3 mb-md">
+              Superpower: "The Architect of Change"
+            </h3>
+            <p class="text-body-md opacity-80 mb-lg">
+              Anda mampu menjembatani ide-ide abstrak menjadi solusi yang
+              terstruktur dan berdampak positif bagi orang lain.
+            </p>
+            <button
+              class="flex items-center gap-xs font-label-bold text-primary-container hover:underline"
+            >
+              Unduh Laporan Lengkap
+              <span
+                class="material-symbols-outlined text-sm"
+                data-icon="download"
+                >download</span
+              >
+            </button>
+          </div>
+          <!-- Abstract visual element -->
+          <div
+            class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary opacity-20 rounded-full blur-3xl"
+          ></div>
+        </div>
+      </div>
+      <!-- Recommendations Section -->
+      <section class="py-lg">
+        <div class="flex items-end justify-between mb-lg">
+          <div>
+            <h2 class="font-h2 text-h2 text-on-surface">
+              Rekomendasi Jalur Karir
+            </h2>
+            <p class="text-on-surface-variant">
+              Langkah strategis untuk mengoptimalkan potensi Anda
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+          <!-- Card 1 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl overflow-hidden resting-shadow hover-shadow transition-all group border border-outline-variant/30"
+          >
+            <div class="h-48 w-full overflow-hidden relative">
+              <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A professional workspace with a large digital monitor showing a sleek user interface design. Soft natural morning light streams through a window onto a clean desk with a modern laptop and a minimalist notebook. The environment feels high-end and focused, representing a modern creative design career path with a warm orange and crisp white color palette."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf4HNr_UFuv7MMCaqaCGn5cFLch6mnikR8w30h_h88rzmolsYnHzTv1ygzsS_e0A0aFhx5OQsBBywyt6U0vLv9snpmUn4gPSbQnOu3zYzH69jpexhoECsINQTAHKxdpB_wpNco4W-tmc3rjat0LY-N6Lv5W-nnImyU6sAvsRYNkKersCdJX7Uqf1bUhjzMnK-104zmZ0OPah7_4mdNPR0Kx5pOQ4dXrYRCmS5bWUrAVy1OkK7FHis8p9YDjm4VnBm6XDiCQerCTRGd"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest"
+                  >Kreativitas</span
+                >
+              </div>
+            </div>
+            <div class="p-md">
+              <h4 class="font-h3 text-h3 mb-base">UX Designer</h4>
+              <p
+                class="text-body-md text-on-surface-variant mb-lg line-clamp-3"
+              >
+                Gunakan kemampuan empati dan kreativitas Anda untuk merancang
+                pengalaman digital yang intuitif bagi jutaan pengguna.
+              </p>
+              <button
+                class="w-full py-3 px-4 border-2 border-on-surface text-on-surface font-label-bold rounded-lg hover:bg-on-surface hover:text-white transition-colors flex items-center justify-center gap-xs"
+              >
+                Pelajari Lebih Lanjut
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="arrow_forward"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl overflow-hidden resting-shadow hover-shadow transition-all group border border-outline-variant/30"
+          >
+            <div class="h-48 w-full overflow-hidden relative">
+              <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A focused professional analyzing complex data visualizations and performance charts on multiple high-resolution screens in a dark, high-tech office. Subtle orange accents glow from the screen interfaces, illuminating the scene with a sense of analytical energy and strategic precision. The atmosphere is sophisticated, modern, and high-performance."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuASi9hMUoPujDaH02B1FJG3ih0oQ7XdwwSNpiBuSYqonL8_hsrFU9i0FggzDvzMn-QMaxXKVQ1VkhXEcAeQrNr28dk-XeNskxx_BcyaGS4Sfl6PVO_vltA8gptoR1BLlb3TRWB27W4gfQR2v7lH-FlfUe7sWe-iBkyz36RkOl99GMHE2my26a7U8eFjWqMh6yJRM7G6BNT_4aKVR7uPF5epNpldKWbz18IJ780P0f_ODKemek3Hi38zicDj2LriBZdZox0koeWmpSbJ"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest"
+                  >Logika</span
+                >
+              </div>
+            </div>
+            <div class="p-md">
+              <h4 class="font-h3 text-h3 mb-base">Data Strategist</h4>
+              <p
+                class="text-body-md text-on-surface-variant mb-lg line-clamp-3"
+              >
+                Manfaatkan kekuatan logika Anda untuk mengungkap pola
+                tersembunyi dalam data dan memberikan arah strategis bagi
+                perusahaan.
+              </p>
+              <button
+                class="w-full py-3 px-4 border-2 border-on-surface text-on-surface font-label-bold rounded-lg hover:bg-on-surface hover:text-white transition-colors flex items-center justify-center gap-xs"
+              >
+                Pelajari Lebih Lanjut
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="arrow_forward"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl overflow-hidden resting-shadow hover-shadow transition-all group border border-outline-variant/30"
+          >
+            <div class="h-48 w-full overflow-hidden relative">
+              <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A warm and inviting scene of a mentor and student engaged in a deep, meaningful conversation in a brightly lit, modern library lounge. The background is filled with books and greenery, creating a serene and supportive atmosphere. Warm orange sunlight filters through the space, emphasizing human connection, empathy, and professional growth."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_a-kmNB9EOm9rLWlXI95JVrwwoLUa_-7ip7L-UujFxqd7ZsfKUl0Zc_KYAZWrZye5BmDxW-ItcsI6WtbfAbax1j6uAjm4zKnlMCJboXzX_q4PvFI-qHafALgXkuse93kUA0e8b6CfdEEwA_7lc71l9d4XHLRxqh4okcUALOY6rxN0JrW-ZKroM9HnH0vq3fOaoK-lK1zGsI-DWEejOArAN89JNGuEYyE_i6vZEuvkfJJMghZhwknWAvg-PkgfdkYVHQd7UdDSAc7V"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest"
+                  >Empati</span
+                >
+              </div>
+            </div>
+            <div class="p-md">
+              <h4 class="font-h3 text-h3 mb-base">Leadership Mentor</h4>
+              <p
+                class="text-body-md text-on-surface-variant mb-lg line-clamp-3"
+              >
+                Kombinasi empati dan visi Anda sangat ideal untuk membimbing
+                individu lain dalam mencapai potensi maksimal mereka.
+              </p>
+              <button
+                class="w-full py-3 px-4 border-2 border-on-surface text-on-surface font-label-bold rounded-lg hover:bg-on-surface hover:text-white transition-colors flex items-center justify-center gap-xs"
+              >
+                Pelajari Lebih Lanjut
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="arrow_forward"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Upsell Banner -->
+      <section
+        class="mt-xl bg-primary-fixed p-lg rounded-xl flex flex-col md:flex-row items-center justify-between gap-md border border-primary/20"
+      >
+        <div class="max-w-xl text-center md:text-left">
+          <h3 class="font-h3 text-h3 text-on-primary-fixed mb-xs">
+            Ingin hasil yang lebih mendalam?
+          </h3>
+          <p class="text-body-md text-on-primary-fixed-variant">
+            Dapatkan analisis perilaku 360 derajat dan konsultasi 1-on-1 dengan
+            psikolog profesional.
+          </p>
+        </div>
+        <button
+          class="bg-on-surface text-white px-xl py-4 rounded-lg font-label-bold hover:brightness-125 transition-all shadow-lg whitespace-nowrap"
+        >
+          Buka Paket Pro
+        </button>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-on-surface text-surface-variant/70 full-width mt-xl">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-lg gap-md max-w-container-max mx-auto"
+      >
+        <div class="flex flex-col gap-xs items-center md:items-start">
+          <div class="font-h3 text-h3 text-white">TalentPulse</div>
+          <p class="font-caption text-caption">
+            © 2024 TalentPulse. All rights reserved. Powered by Professional
+            Energy.
+          </p>
+        </div>
+        <div class="flex gap-lg">
+          <a
+            class="text-caption hover:text-primary-container transition-colors"
+            href="#"
+            >Privacy</a
+          >
+          <a
+            class="text-caption hover:text-primary-container transition-colors"
+            href="#"
+            >Terms</a
+          >
+          <a
+            class="text-caption hover:text-primary-container transition-colors"
+            href="#"
+            >Contact</a
+          >
+          <a
+            class="text-caption hover:text-primary-container transition-colors"
+            href="#"
+            >Support</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
