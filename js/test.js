@@ -1,51 +1,30 @@
-const questions = [
-  {
-    //1
-    question:
-      "Saya tertarik mencoba kegiatan yang melibatkan praktik langsung dibanding hanya teori. ",
-  },
-  {
-    //2
-    question:
-      "Saya tertarik memahami alasan atau penyebab dari suatu kejadian.",
-  },
-  {
-    //3
-    question:
-      "Saya tertarik mengikuti kegiatan yang berhubungan dengan seni atau kreativitas.",
-  },
-  {
-    //4
-    question:
-      "Saya merasa senang ketika dapat membantu teman yang sedang mengalami kesulitan.",
-  },
-  {
-    //5
-    question:
-      "Saat kerja kelompok, saya tertarik menjadi orang yang mengatur jalannya diskusi atau kegiatan.",
-  },
-  {
-    //6
-    question:
-      "Saya merasa nyaman mengerjakan tugas yang berkaitan dengan pencatatan atau pengelolaan data.",
-  },
-];
-
 let currentQuestion = 0;
+const scores = {
+  realistic: 0,
+  investigative: 0,
+  artistic: 0,
+  social: 0,
+  enterprising: 0,
+  conventional: 0,
+};
+
 const answers = [];
 
 const container = document.getElementById("question-container");
 const prevBtn = document.getElementById("prevBtn");
+
 const progressText = document.getElementById("progress-text");
+
 const progressPercent = document.getElementById("progress-percent");
+
 const progressBar = document.getElementById("progress-bar");
 
 function renderQuestion() {
-  const item = questions[currentQuestion];
+  const item = sections[currentQuestion];
 
-  const percent = Math.round(((currentQuestion + 1) / questions.length) * 100);
+  const percent = Math.round(((currentQuestion + 1) / sections.length) * 100);
 
-  progressText.innerText = `Pertanyaan ${currentQuestion + 1} dari ${questions.length}`;
+  progressText.innerText = `Pertanyaan ${currentQuestion + 1} dari ${sections.length}`;
 
   progressPercent.innerText = `${percent}%`;
 
@@ -53,44 +32,46 @@ function renderQuestion() {
 
   container.innerHTML = `
 
-<div
-  class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col gap-lg items-center text-center transition-all duration-500"
->
-
-  <div class="flex flex-col gap-md">
-
-    <span
-      class="material-symbols-outlined text-primary text-[48px]"
-      data-icon="psychology"
+    <div
+      class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col gap-lg items-center transition-all duration-500"
     >
-      psychology
-    </span>
 
-    <h1 class="font-h2 text-h2 text-on-surface leading-tight px-md">
-      ${item.question}
-    </h1>
+      <div class="flex flex-col gap-md">
 
-  </div>
+        <span
+          class="material-symbols-outlined text-primary text-center text-[48px]"
+        >
+          psychology
+        </span>
 
-  <!-- Response Scale -->
-  <div class="w-full max-w-xl py-md">
+        <h1 class="font-h2 text-h2 text-on-surface leading-tight px-md">
+          ${item.question}
+        </h1>
 
-    <div class="flex justify-between items-start gap-xs md:gap-md">
+      </div>
 
-      ${generateOption(1, "Sangat Tidak Senang")}
-      ${generateOption(2, "Tidak Senang")}
-      ${generateOption(3, "Senang")}
-      ${generateOption(4, "Sangat Senang")}
+      <div class="w-full max-w-xl py-md">
+
+        <div
+          class="flex justify-between items-start gap-xs md:gap-md"
+        >
+
+          ${generateOption(1, "Sangat Tidak Senang")}
+          ${generateOption(2, "Tidak Senang")}
+          ${generateOption(3, "Senang")}
+          ${generateOption(4, "Sangat Senang")}
+
+        </div>
+
+      </div>
 
     </div>
 
-  </div>
-
-</div>
-
-`;
+  `;
 
   addOptionListener();
+
+  prevBtn.disabled = currentQuestion === 0;
 }
 
 function generateOption(value, label) {
@@ -125,84 +106,129 @@ function addOptionListener() {
     button.addEventListener("click", () => {
       const selectedValue = button.dataset.value;
 
+      const item = sections[currentQuestion];
+
       answers.push({
-        question: questions[currentQuestion].question,
-        answer: selectedValue,
+        question: item.question,
+        type: item.type,
+        answer: Number(selectedValue),
       });
 
-      // Disable semua tombol setelah pilih
+      // tambah score
+      scores[item.type] += Number(selectedValue);
+
+      // disable button
       buttons.forEach((btn) => {
         btn.disabled = true;
       });
 
-      // Animasi tombol dipilih
-      container.classList.add("question-enter");
+      // active state
       button.classList.add("active");
-      button.classList.remove("bg-gray-50");
-      button
-        .querySelector("div")
-        .classList.remove("border-gray-300", "text-gray-700");
 
-      button.querySelector("div").classList.add("border-white", "text-white");
-      button.querySelector("span").classList.remove("text-gray-600");
-      button.querySelector("span").classList.add("text-white");
-
-      // Efek fade sebelum next
+      // transition
       container.classList.add("opacity-70", "scale-[0.98]");
 
-      // Delay pindah soal
       setTimeout(() => {
+        container.classList.remove("opacity-70", "scale-[0.98]");
+
         currentQuestion++;
 
-        if (currentQuestion < questions.length) {
-          container.classList.remove("opacity-70", "scale-[0.98]");
+        if (currentQuestion < sections.length) {
           renderQuestion();
+          console.log("Answers:", answers);
+          console.log("Scores:", scores);
         } else {
           showResult();
         }
-      }, 800);
+      }, 500);
     });
   });
 }
 
 prevBtn.addEventListener("click", () => {
-  if (currentQuestion === 0) {
-    prevBtn.disabled = true;
-  } else {
-    prevBtn.disabled = false;
-  }
   if (currentQuestion > 0) {
     currentQuestion--;
 
-    // Hapus jawaban terakhir
     answers.pop();
 
     renderQuestion();
   }
 });
 
+function getTopResults() {
+  return Object.entries(scores).sort((a, b) => b[1] - a[1]);
+}
+
 function showResult() {
-  container.classList.remove("opacity-70", "scale-[0.98]");
+  console.log("Answers:", answers);
+  console.log("Scores:", scores);
+  const topResults = getTopResults();
+
+  const top1 = topResults[0];
+  const top2 = topResults[1];
+  const top3 = topResults[2];
   container.innerHTML = `
 
-    
+<div
+  class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-xl text-center flex flex-col gap-lg items-center"
+>
 
-      <h1 class="text-4xl font-bold text-gray-800">
-        Survey Selesai!
-      </h1>
+  <span
+    class="material-symbols-outlined text-primary text-[72px]"
+  >
+    psychology
+  </span>
 
-      <p class="text-gray-500 text-lg">
-        Terima kasih telah mengisi survey.
+  <h1 class="font-h1 text-h1 text-on-surface">
+    Hasil Talent Test
+  </h1>
+
+  <p class="text-on-surface-variant font-body-lg">
+    Berikut 3 potensi tertinggi Anda:
+  </p>
+
+  <div class="flex flex-col gap-md w-full">
+
+    <div class="p-lg rounded-xl bg-primary-container text-white">
+      <h2 class="text-2xl font-bold">
+        #1 ${top1[0]}
+      </h2>
+
+      <p>
+        Score: ${top1[1]}
       </p>
-
-     
-
     </div>
 
-  `;
+    <div class="p-lg rounded-xl bg-surface-container-high">
+      <h2 class="text-xl font-bold">
+        #2 ${top2[0]}
+      </h2>
+
+      <p>
+        Score: ${top2[1]}
+      </p>
+    </div>
+
+    <div class="p-lg rounded-xl bg-surface-container-high">
+      <h2 class="text-xl font-bold">
+        #3 ${top3[0]}
+      </h2>
+
+      <p>
+        Score: ${top3[1]}
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+`;
 
   progressText.innerText = "Selesai";
+
   progressPercent.innerText = "100%";
+
   progressBar.style.width = "100%";
 }
 
