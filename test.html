@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
+    <script src="js/test.js" defer></script>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -132,6 +133,7 @@
       };
     </script>
     <style>
+
       .material-symbols-outlined {
         font-variation-settings:
           "FILL" 0,
@@ -202,11 +204,11 @@
       </div>
     </header>
     <main
-      class="flex-grow flex flex-col items-center justify-center py-xl px-gutter max-w-container-max mx-auto w-full"
+      class="flex-grow flex flex-col items-center justify-center py-lg px-gutter max-w-container-max mx-auto w-full"
     >
       <!-- Progress Section -->
-      <div class="w-full max-w-3xl mb-xl">
-        <div class="flex justify-between items-end mb-sm">
+      <div class="w-full max-w-3xl mb-sm">
+        <div class="flex justify-between items-end mb-xs">
           <div>
             <span
               class="text-primary font-label-bold uppercase tracking-widest text-caption"
@@ -215,132 +217,42 @@
             <h2 class="font-h3 text-h3 mt-xs">Section 1: Logical Reasoning</h2>
           </div>
           <div class="text-right">
-            <span class="font-label-bold text-on-surface">Step 4 of 20</span>
+            <span id="progress-text" class="font-label-bold text-on-surface">
+              Pertanyaan 1 dari 4
+            </span>
           </div>
         </div>
+
         <!-- Progress Bar -->
         <div class="h-2 w-full bg-on-surface rounded-full overflow-hidden">
           <div
-            class="h-full bg-primary-container w-[20%] transition-all duration-500 ease-out"
+            id="progress-bar"
+            class="h-full bg-primary-container transition-all duration-500 ease-out"
+            style="width: 25%"
           ></div>
         </div>
+        <span
+          id="progress-percent"
+          class="text-caption text-on-surface-variant"
+        >
+          25%
+        </span>
       </div>
-      <!-- Question Card -->
-      <div
-        class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col gap-lg items-center text-center"
-      >
-        <div class="flex flex-col gap-md">
-          <span
-            class="material-symbols-outlined text-primary text-[48px]"
-            data-icon="psychology"
-            >psychology</span
-          >
-          <h1 class="font-h2 text-h2 text-on-surface leading-tight px-md">
-            Seberapa senang Anda memecahkan masalah logika?
-          </h1>
-          <p class="text-on-surface-variant font-body-lg max-w-2xl mx-auto">
-            Pikirkan tentang situasi di mana Anda harus menganalisis pola atau
-            mencari solusi untuk teka-teki yang kompleks.
-          </p>
-        </div>
-        <!-- Response Scale -->
-        <div class="w-full max-w-xl py-md">
-          <div class="flex justify-between items-start gap-xs md:gap-md">
-            <!-- Option 1 -->
-            <button
-              class="scale-option flex flex-col items-center gap-sm group transition-all w-full"
-            >
-              <div
-                class="scale-circle w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline flex items-center justify-center font-h3 text-on-surface transition-all"
-              >
-                1
-              </div>
-              <span
-                class="text-caption font-label-bold text-on-surface-variant opacity-60 group-hover:opacity-100"
-                >Sangat Tidak Senang</span
-              >
-            </button>
-            <!-- Option 2 -->
-            <button
-              class="scale-option flex flex-col items-center gap-sm group transition-all w-full"
-            >
-              <div
-                class="scale-circle w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline flex items-center justify-center font-h3 text-on-surface transition-all"
-              >
-                2
-              </div>
-              <span
-                class="text-caption font-label-bold text-on-surface-variant opacity-60 group-hover:opacity-100"
-                >Tidak Senang</span
-              >
-            </button>
-            <!-- Option 3 -->
-            <button
-              class="scale-option flex flex-col items-center gap-sm group transition-all w-full"
-            >
-              <div
-                class="scale-circle w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline flex items-center justify-center font-h3 text-on-surface transition-all"
-              >
-                3
-              </div>
-              <span
-                class="text-caption font-label-bold text-on-surface-variant opacity-60 group-hover:opacity-100"
-                >Netral</span
-              >
-            </button>
-            <!-- Option 4 -->
-            <button
-              class="scale-option flex flex-col items-center gap-sm group transition-all w-full active"
-            >
-              <div
-                class="scale-circle w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline flex items-center justify-center font-h3 text-on-surface transition-all"
-              >
-                4
-              </div>
-              <span
-                class="text-caption font-label-bold text-on-surface-variant opacity-60 group-hover:opacity-100"
-                >Senang</span
-              >
-            </button>
-            <!-- Option 5 -->
-            <button
-              class="scale-option flex flex-col items-center gap-sm group transition-all w-full"
-            >
-              <div
-                class="scale-circle w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline flex items-center justify-center font-h3 text-on-surface transition-all"
-              >
-                5
-              </div>
-              <span
-                class="text-caption font-label-bold text-on-surface-variant opacity-60 group-hover:opacity-100"
-                >Sangat Senang</span
-              >
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- Navigation Buttons -->
-      <div class="w-full max-w-3xl flex justify-between items-center mt-lg">
-        <a href="index.html">
-          <button
-            class="flex items-center gap-xs px-lg py-md rounded-lg border-2 border-on-surface text-on-surface font-label-bold hover:bg-on-surface hover:text-white transition-all active:scale-95"
-          >
-            <span class="material-symbols-outlined" data-icon="arrow_back"
-              >arrow_back</span
-            >
-            Kembali
-          </button>
-        </a>
-        <a href="result.html">
-          <button
-            class="flex items-center gap-xs px-xl py-md rounded-lg bg-primary-container text-white font-label-bold hover:brightness-110 shadow-[0px_4px_20px_rgba(255,140,0,0.2)] transition-all active:scale-95"
-          >
-            Lanjut
-            <span class="material-symbols-outlined" data-icon="arrow_forward"
-              >arrow_forward</span
-            >
-          </button>
-        </a>
+
+      <!-- Container Semua Pertanyaan -->
+      <div id="question-container" class="transition-all duration-500"></div>
+
+      <!-- Navigation -->
+      <div class="w-full max-w-3xl flex justify-between items-center mt-6">
+        <!-- Back -->
+        <button
+          id="prevBtn"
+          class="flex items-center gap-xs px-lg py-md rounded-xl border border-outline text-on-surface font-label-bold hover:bg-surface-container transition-all duration-300 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          <span class="material-symbols-outlined"> arrow_back </span>
+
+          Kembali
+        </button>
       </div>
       <!-- Support Info Section -->
       <div
@@ -425,5 +337,6 @@
         </div>
       </div>
     </footer>
+    <script src="js/test.js"></script>
   </body>
 </html>
