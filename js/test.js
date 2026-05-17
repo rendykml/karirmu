@@ -1,5 +1,8 @@
-let currentQuestion = 0;
-const scores = {
+let currentQuestion = Number(localStorage.getItem("currentQuestion")) || 0;
+
+const answers = JSON.parse(localStorage.getItem("answers")) || {};
+
+const scores = JSON.parse(localStorage.getItem("scores")) || {
   realistic: 0,
   investigative: 0,
   artistic: 0,
@@ -8,9 +11,8 @@ const scores = {
   conventional: 0,
 };
 
-const answers = [];
-
 const container = document.getElementById("question-container");
+
 const prevBtn = document.getElementById("prevBtn");
 
 const progressText = document.getElementById("progress-text");
@@ -20,11 +22,11 @@ const progressPercent = document.getElementById("progress-percent");
 const progressBar = document.getElementById("progress-bar");
 
 function renderQuestion() {
-  const item = sections[currentQuestion];
+  const section = sections[currentQuestion];
 
   const percent = Math.round(((currentQuestion + 1) / sections.length) * 100);
 
-  progressText.innerText = `Pertanyaan ${currentQuestion + 1} dari ${sections.length}`;
+  progressText.innerText = `Section ${currentQuestion + 1} dari ${sections.length}`;
 
   progressPercent.innerText = `${percent}%`;
 
@@ -32,52 +34,61 @@ function renderQuestion() {
 
   container.innerHTML = `
 
-    <div
-      class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col gap-lg items-center transition-all duration-500"
-    >
+    <div class="flex flex-col gap-lg w-full max-w-3xl">
 
-      <div class="flex flex-col gap-md">
-
-        <span
-          class="material-symbols-outlined text-primary text-center text-[48px]"
-        >
-          psychology
-        </span>
-
-        <h1 class="font-h2 text-h2 text-on-surface leading-tight px-md">
-          ${item.question}
-        </h1>
-
-      </div>
-
-      <div class="w-full max-w-xl py-md">
+      ${section
+        .map(
+          (item, index) => `
 
         <div
-          class="flex justify-between items-start gap-xs md:gap-md"
+          class="question-card w-full bg-surface-container-lowest rounded-xl p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col gap-lg items-center text-center transition-all duration-500"
         >
 
-          ${generateOption(1, "Sangat Tidak Senang")}
-          ${generateOption(2, "Tidak Senang")}
-          ${generateOption(3, "Senang")}
-          ${generateOption(4, "Sangat Senang")}
+          <div class="flex flex-col gap-md">
+
+            <h1 class="font-h3 text-h2 text-on-surface leading-tight px-md">
+              ${index + 1}. ${item.question}
+            </h1>
+
+          </div>
+
+          <div class="w-full max-w-xl py-4 px-2">
+
+            <div
+              class="flex justify-between items-start gap-xs md:gap-md"
+            >
+
+              ${generateOption(index, 1, "Sangat Tidak Senang")}
+              ${generateOption(index, 2, "Tidak Senang")}
+              ${generateOption(index, 3, "Senang")}
+              ${generateOption(index, 4, "Sangat Senang")}
+
+            </div>
+
+          </div>
 
         </div>
 
-      </div>
+      `,
+        )
+        .join("")}
 
     </div>
 
   `;
+
+  container.classList.remove("opacity-70", "scale-[0.98]");
 
   addOptionListener();
 
   prevBtn.disabled = currentQuestion === 0;
 }
 
-function generateOption(value, label) {
+function generateOption(questionIndex, value, label) {
   return `
 
     <button
+      data-question="${questionIndex}"
       data-value="${value}"
       class="answer-btn scale-option flex flex-col items-center gap-sm group transition-all w-full"
     >
@@ -102,128 +113,158 @@ function generateOption(value, label) {
 function addOptionListener() {
   const buttons = document.querySelectorAll(".answer-btn");
 
+  const currentAnswers = {};
+
+  Object.keys(answers).forEach((key) => {
+    const [sectionIndex, questionIndex] = key.split("-");
+
+    if (Number(sectionIndex) === currentQuestion) {
+      currentAnswers[questionIndex] = answers[key].answer;
+
+      const selectedButton = document.querySelector(
+        `[data-question="${questionIndex}"][data-value="${answers[key].answer}"]`,
+      );
+
+      if (selectedButton) {
+        selectedButton.classList.add("active");
+      }
+    }
+  });
+
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedValue = button.dataset.value;
+      const questionIndex = button.dataset.question;
 
-      const item = sections[currentQuestion];
+      const selectedValue = Number(button.dataset.value);
 
-      answers.push({
-        question: item.question,
-        type: item.type,
-        answer: Number(selectedValue),
-      });
+      const item = sections[currentQuestion][questionIndex];
 
-      // tambah score
-      scores[item.type] += Number(selectedValue);
+      document
+        .querySelectorAll(`[data-question="${questionIndex}"]`)
+        .forEach((btn) => {
+          btn.classList.remove("active");
+        });
 
-      // disable button
-      buttons.forEach((btn) => {
-        btn.disabled = true;
-      });
-
-      // active state
       button.classList.add("active");
 
-      // transition
-      container.classList.add("opacity-70", "scale-[0.98]");
+      if (currentAnswers[questionIndex]) {
+        scores[item.type] -= currentAnswers[questionIndex];
+      }
 
-      setTimeout(() => {
-        container.classList.remove("opacity-70", "scale-[0.98]");
+      currentAnswers[questionIndex] = selectedValue;
 
-        currentQuestion++;
+      scores[item.type] += selectedValue;
 
-        if (currentQuestion < sections.length) {
-          renderQuestion();
-          console.log("Answers:", answers);
-          console.log("Scores:", scores);
-        } else {
-          showResult();
-        }
-      }, 500);
+      // simpan ke answers
+      answers[`${currentQuestion}-${questionIndex}`] = {
+        question: item.question,
+        type: item.type,
+        answer: selectedValue,
+      };
+
+      // simpan localStorage
+      localStorage.setItem("answers", JSON.stringify(answers));
+
+      localStorage.setItem("scores", JSON.stringify(scores));
+
+      localStorage.setItem("currentQuestion", currentQuestion);
+
+      // cek apakah semua soal terjawab
+      const totalQuestions = sections[currentQuestion].length;
+
+      const answeredQuestions = Object.keys(currentAnswers).length;
+
+      if (answeredQuestions === totalQuestions) {
+        // delay biar smooth
+        setTimeout(() => {
+          container.classList.add("opacity-70", "scale-[0.98]");
+
+          setTimeout(() => {
+            container.classList.remove("opacity-70", "scale-[0.98]");
+
+            currentQuestion++;
+
+            if (currentQuestion < sections.length) {
+              renderQuestion();
+
+              // auto scroll ke atas
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            } else {
+              showResult();
+
+              // scroll ke atas hasil
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }
+          }, 300);
+        }, 400);
+      }
     });
   });
 }
 
 prevBtn.addEventListener("click", () => {
   if (currentQuestion > 0) {
-    currentQuestion--;
+    container.classList.add("opacity-70", "scale-[0.98]");
 
-    answers.pop();
+    setTimeout(() => {
+      container.classList.remove("opacity-70", "scale-[0.98]");
 
-    renderQuestion();
+      currentQuestion--;
+
+      renderQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 300);
   }
 });
 
-function getTopResults() {
-  return Object.entries(scores).sort((a, b) => b[1] - a[1]);
-}
-
 function showResult() {
+  const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
   console.log("Answers:", answers);
   console.log("Scores:", scores);
-  const topResults = getTopResults();
 
-  const top1 = topResults[0];
-  const top2 = topResults[1];
-  const top3 = topResults[2];
   container.innerHTML = `
 
-<div
-  class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-xl text-center flex flex-col gap-lg items-center"
->
+    <div
+      class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-xl text-center flex flex-col gap-md items-center"
+    >
 
-  <span
-    class="material-symbols-outlined text-primary text-[72px]"
-  >
-    psychology
-  </span>
+      <span
+        class="material-symbols-outlined text-primary text-[72px]"
+      >
+        check_circle
+      </span>
 
-  <h1 class="font-h1 text-h1 text-on-surface">
-    Hasil Talent Test
-  </h1>
+      <h1 class="font-h1 text-h1 text-on-surface">
+        Survey Selesai!
+      </h1>
 
-  <p class="text-on-surface-variant font-body-lg">
-    Berikut 3 potensi tertinggi Anda:
-  </p>
+      <p class="text-on-surface-variant font-body-lg">
+        Talent utama Anda adalah:
+      </p>
 
-  <div class="flex flex-col gap-md w-full">
-
-    <div class="p-lg rounded-xl bg-primary-container text-white">
-      <h2 class="text-2xl font-bold">
-        #1 ${top1[0]}
+      <h2 class="text-primary text-3xl font-bold">
+        ${sortedScores[0][0]}
       </h2>
 
-      <p>
-        Score: ${top1[1]}
-      </p>
     </div>
+  `;
 
-    <div class="p-lg rounded-xl bg-surface-container-high">
-      <h2 class="text-xl font-bold">
-        #2 ${top2[0]}
-      </h2>
+  localStorage.removeItem("answers");
 
-      <p>
-        Score: ${top2[1]}
-      </p>
-    </div>
+  localStorage.removeItem("scores");
 
-    <div class="p-lg rounded-xl bg-surface-container-high">
-      <h2 class="text-xl font-bold">
-        #3 ${top3[0]}
-      </h2>
-
-      <p>
-        Score: ${top3[1]}
-      </p>
-    </div>
-
-  </div>
-
-</div>
-
-`;
+  localStorage.removeItem("currentQuestion");
 
   progressText.innerText = "Selesai";
 
