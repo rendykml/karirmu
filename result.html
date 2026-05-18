@@ -160,7 +160,7 @@
       <div
         class="flex justify-between items-center w-full px-gutter py-4 max-w-container-max mx-auto"
       >
-        <div class="font-h2 text-h2 font-bold text-on-surface">TalentPulse</div>
+        <div class="font-h2 text-h2 font-bold text-on-surface">BakatMu</div>
         <div class="hidden md:flex gap-md items-center">
           <a
             class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200"
@@ -197,9 +197,9 @@
         </div>
       </div>
     </nav>
-    <main class="max-w-container-max mx-auto px-gutter py-xl">
+    <main class="max-w-container-max mx-auto px-gutter py-8 ">
       <!-- Results Header Section -->
-      <section class="mb-xl text-center md:text-left">
+      <section class="mb-12 text-center md:text-left">
         <span
           class="text-primary font-label-bold uppercase tracking-widest mb-base block"
           >Hasil Analisis Bakat</span
@@ -211,74 +211,35 @@
           Berdasarkan penilaian terbaru, Anda memiliki kombinasi unik antara
           visi artistik, ketajaman analisis, dan empati sosial yang mendalam.
         </p>
-      </section>
+       </section>
+      
       <!-- Visualization Bento Grid -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-md mb-xl">
         <!-- Main Chart Card -->
         <div
           class="md:col-span-8 bg-surface-container-lowest p-md md:p-lg rounded-xl resting-shadow flex flex-col justify-between"
         >
-          <div class="flex justify-between items-start mb-lg">
+          <div class="flex justify-between items-start mb-8">
             <div>
               <h3 class="font-h3 text-h3 mb-xs">Top 3 Bakat</h3>
+
               <p class="text-caption text-on-surface-variant">
                 Skor kompetensi berdasarkan performa tes
               </p>
             </div>
+
             <span
               class="material-symbols-outlined text-primary text-3xl"
               data-icon="insights"
-              >insights</span
             >
+              insights
+            </span>
           </div>
-          <div class="space-y-lg">
-            <!-- Kreativitas -->
-            <div class="group">
-              <div class="flex justify-between mb-xs">
-                <span class="font-label-bold text-on-surface">Kreativitas</span>
-                <span class="font-label-bold text-primary">94%</span>
-              </div>
-              <div
-                class="h-3 w-full progress-track rounded-full overflow-hidden"
-              >
-                <div
-                  class="h-full progress-fill rounded-full"
-                  style="width: 94%"
-                ></div>
-              </div>
-            </div>
-            <!-- Logika -->
-            <div class="group">
-              <div class="flex justify-between mb-xs">
-                <span class="font-label-bold text-on-surface">Logika</span>
-                <span class="font-label-bold text-primary">88%</span>
-              </div>
-              <div
-                class="h-3 w-full progress-track rounded-full overflow-hidden"
-              >
-                <div
-                  class="h-full progress-fill rounded-full"
-                  style="width: 88%"
-                ></div>
-              </div>
-            </div>
-            <!-- Empati -->
-            <div class="group">
-              <div class="flex justify-between mb-xs">
-                <span class="font-label-bold text-on-surface">Empati</span>
-                <span class="font-label-bold text-primary">82%</span>
-              </div>
-              <div
-                class="h-3 w-full progress-track rounded-full overflow-hidden"
-              >
-                <div
-                  class="h-full progress-fill rounded-full"
-                  style="width: 82%"
-                ></div>
-              </div>
-            </div>
-          </div>
+
+          <!-- AUTO RESULT -->
+          <div id="topTalentContainer" class="space-y-lg"></div>
         </div>
+
         <!-- Insight Sidebar Card -->
         <div
           class="md:col-span-4 bg-on-surface text-surface-container-lowest p-md md:p-lg rounded-xl flex flex-col justify-center relative overflow-hidden"
@@ -291,33 +252,38 @@
                 class="material-symbols-outlined text-on-surface"
                 data-icon="auto_awesome"
                 style="font-variation-settings: &quot;FILL&quot; 1"
-                >auto_awesome</span
               >
+                auto_awesome
+              </span>
             </div>
-            <h3 class="font-h3 text-h3 mb-md">
-              Superpower: "The Architect of Change"
-            </h3>
-            <p class="text-body-md opacity-80 mb-lg">
-              Anda mampu menjembatani ide-ide abstrak menjadi solusi yang
-              terstruktur dan berdampak positif bagi orang lain.
-            </p>
+
+            <!-- AUTO TITLE -->
+            <h3 id="superpowerTitle" class="font-h3 text-h3 mb-md"></h3>
+
+            <!-- AUTO DESCRIPTION -->
+            <p id="superpowerDesc" class="text-body-md opacity-80 mb-lg"></p>
+
             <button
               class="flex items-center gap-xs font-label-bold text-primary-container hover:underline"
             >
               Unduh Laporan Lengkap
+
               <span
                 class="material-symbols-outlined text-sm"
                 data-icon="download"
-                >download</span
               >
+                download
+              </span>
             </button>
           </div>
+
           <!-- Abstract visual element -->
           <div
             class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary opacity-20 rounded-full blur-3xl"
           ></div>
         </div>
       </div>
+
       <!-- Recommendations Section -->
       <section class="py-lg">
         <div class="flex items-end justify-between mb-lg">
@@ -444,26 +410,6 @@
             </div>
           </div>
         </div>
-      </section>
-      <!-- Upsell Banner -->
-      <section
-        class="mt-xl bg-primary-fixed p-lg rounded-xl flex flex-col md:flex-row items-center justify-between gap-md border border-primary/20"
-      >
-        <div class="max-w-xl text-center md:text-left">
-          <h3 class="font-h3 text-h3 text-on-primary-fixed mb-xs">
-            Ingin hasil yang lebih mendalam?
-          </h3>
-          <p class="text-body-md text-on-primary-fixed-variant">
-            Dapatkan analisis perilaku 360 derajat dan konsultasi 1-on-1 dengan
-            psikolog profesional.
-          </p>
-        </div>
-        <button
-          class="bg-on-surface text-white px-xl py-4 rounded-lg font-label-bold hover:brightness-125 transition-all shadow-lg whitespace-nowrap"
-        >
-          Buka Paket Pro
-        </button>
-      </section>
     </main>
     <!-- Footer -->
     <footer class="bg-on-surface text-surface-variant/70 full-width mt-xl">
@@ -471,9 +417,9 @@
         class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-lg gap-md max-w-container-max mx-auto"
       >
         <div class="flex flex-col gap-xs items-center md:items-start">
-          <div class="font-h3 text-h3 text-white">TalentPulse</div>
+          <div class="font-h3 text-h3 text-white">BakatMu</div>
           <p class="font-caption text-caption">
-            © 2024 TalentPulse. All rights reserved. Powered by Professional
+            © 2024 BakatMu. All rights reserved. Powered by Professional
             Energy.
           </p>
         </div>
@@ -501,5 +447,6 @@
         </div>
       </div>
     </footer>
+    <script src="js/result.js"></script>
   </body>
 </html>
