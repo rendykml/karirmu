@@ -228,49 +228,13 @@ prevBtn.addEventListener("click", () => {
 });
 
 function showResult() {
-  const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  // simpan hasil final
+  localStorage.setItem("finalScores", JSON.stringify(scores));
 
-  console.log("Answers:", answers);
-  console.log("Scores:", scores);
+  localStorage.setItem("finalAnswers", JSON.stringify(answers));
 
-  container.innerHTML = `
-
-    <div
-      class="w-full max-w-3xl bg-surface-container-lowest rounded-xl p-xl text-center flex flex-col gap-md items-center"
-    >
-
-      <span
-        class="material-symbols-outlined text-primary text-[72px]"
-      >
-        check_circle
-      </span>
-
-      <h1 class="font-h1 text-h1 text-on-surface">
-        Survey Selesai!
-      </h1>
-
-      <p class="text-on-surface-variant font-body-lg">
-        Talent utama Anda adalah:
-      </p>
-
-      <h2 class="text-primary text-3xl font-bold">
-        ${sortedScores[0][0]}
-      </h2>
-
-    </div>
-  `;
-
-  localStorage.removeItem("answers");
-
-  localStorage.removeItem("scores");
-
-  localStorage.removeItem("currentQuestion");
-
-  progressText.innerText = "Selesai";
-
-  progressPercent.innerText = "100%";
-
-  progressBar.style.width = "100%";
+  // pindah halaman
+  window.location.href = "result.html";
 }
 
 renderQuestion();
